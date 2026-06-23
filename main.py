@@ -3,7 +3,7 @@ from pydantic import BaseModel, Field, EmailStr
 from datetime import datetime
 import random
 
-# Initialize the application
+# Initializing my application
 app = FastAPI(
     title="Cowrywise Learning API",
     description="Mini-projects covering GET routes, POST requests, and Pydantic validation.",
@@ -34,6 +34,7 @@ async def time_route():
 
 # Hardcoded list of quotes
 quotes_list = [
+    "I am Prosper"
     "The best way to predict the future is to invent it.",
     "Code is like humor. When you have to explain it, it’s bad.",
     "First, solve the problem. Then, write the code.",
@@ -65,7 +66,7 @@ class ContactMessage(BaseModel):
     email: EmailStr 
     # Stretch Goal: Enforce a minimum length of 10 characters
     message: str = Field(..., min_length=10, description="Your message (min 10 characters)")
-    # Optional field with a default value
+    # Here, this is the optional field with a default value
     subject: str = Field(default="General Inquiry")
 
 
