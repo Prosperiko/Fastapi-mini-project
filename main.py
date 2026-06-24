@@ -82,3 +82,22 @@ async def submission_route(contact: ContactMessage):
         # Returning the validated data to prove it worked
         "data_received": contact.model_dump() 
     }
+
+import threading
+import time
+import requests
+
+def keep_alive():
+    while True:
+        try:
+            url = "https://fastapi-mini-project.onrender.com/"  # Replace with your actual Render URL
+            res = requests.get(url)
+            print(f"Pinged at {time.ctime()}: Status {res.status_code}")
+        except Exception as e:
+            print(f"Error pinging at {time.ctime()}: {e}")
+        time.sleep(60 * 12)  # Ping every 14 minutes
+
+# # Create and start the background thread
+t = threading.Thread(target=keep_alive)
+t.daemon = True
+t.start()
